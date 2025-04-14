@@ -78,7 +78,7 @@ void delay_us(uint32_t nus);
 
 int getKey_value(uint32_t key);
 void Lcd_Proc(void);
-void Get_AdcData();
+void Get_AdcData(void);
 void Key_Proc(void);
 void Uart_Proc(void);
 
@@ -374,7 +374,7 @@ void Lcd_Proc(void)
 			if(temp>Threshold_t_conf[1])
 			{
 				Gui_DrawFont_1616(80,64,BLACK, YELLOW,font6,1);//制热关
-				HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, 1);
+				HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, GPIO_PIN_SET);
 			}			
 			
 
@@ -387,7 +387,7 @@ void Lcd_Proc(void)
 			else if(humiH<=Threshold_h_conf[1] || temp<=Threshold_t_conf[1])
 			{
 				Gui_DrawFont_1616(80,80,BLACK, YELLOW,font6,1);//制冷关
-				HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, 1);
+				HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_SET);
 			}
 					
 						
@@ -395,12 +395,12 @@ void Lcd_Proc(void)
 			if(humiH>Threshold_h_conf[0])
 			{
 				Gui_DrawFont_1616(80,96,BLACK, YELLOW,font5,1);//风机开
-				HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, 0);
+				HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, GPIO_PIN_RESET);
 			}
 			else if(humiH<=Threshold_h_conf[1])
 			{
 				Gui_DrawFont_1616(80,96,BLACK, YELLOW,font6,1);//风机关	
-				HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, 1);				
+				HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, GPIO_PIN_SET);				
 			}
 			
 			Gui_DrawFont_1616(0,112,BLACK, YELLOW,font9,5);//第八行，工作电压：
